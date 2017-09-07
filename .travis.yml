@@ -2,7 +2,6 @@ language: ruby
 rvm:
   - 2.3.1
 gemfile: Gemfile.rb
-cache: bundler
 script: ruby main.rb
 before_install:
   - git clone https://github.com/Linuxbrew/brew.git ~/.linuxbrew
