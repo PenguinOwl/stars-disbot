@@ -5,4 +5,5 @@ gemfile: Gemfile.rb
 cache: bundler
 script: ruby main.rb
 before_install:
+  - sudo apt-get update
   - sudo apt-get install libsodium
