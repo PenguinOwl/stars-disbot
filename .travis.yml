@@ -5,6 +5,8 @@ gemfile: Gemfile.rb
 cache: bundler
 script: ruby main.rb
 before_install:
-  - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-  - echo 'export PATH="$(brew --prefix)/bin:$PATH"' >>~/.profile
+  - git clone https://github.com/Linuxbrew/brew.git ~/.linuxbrew
+  - PATH="$HOME/.linuxbrew/bin:$PATH"
+  - export MANPATH="$(brew --prefix)/share/man:$MANPATH"
+  - export INFOPATH="$(brew --prefix)/share/info:$INFOPATH"  
   - brew install libsodium
