@@ -2,4 +2,7 @@ language: ruby
 rvm:
   - 2.3.1
 gemfile: Gemfile.rb
+cache: bundler
 script: ruby main.rb
+before_install:
+  - sudo apt-get install libsodium
