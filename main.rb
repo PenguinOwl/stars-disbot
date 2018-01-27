@@ -1,22 +1,48 @@
-require "discordrb"
+require 'discordrb'
 #tba
-prefix = "["
-bot = Discordrb::Bot.new token: 'MzU1NTA4NzI4MzQ0MDg0NTEx.DJN1kg.hqg0FnhVzEKfLE2TVl8y6naurJs', client_id: 355508728344084511
-
+prefix = '['
+bot = Discordrb::Bot.new token: File.open("creds.txt","r+").read.strip, client_id: 355508728344084511
+puts bot.invite_url
 def command(command,event,args)
-  catch ArgumentError
-    send(command,event,*args)
-  rescue
-    bot.sendmessage("woow")
+  begin
+    begin
+      send(command,event,*args)
+    rescue ArgumentError
+      event.respond("Argument Error!!!1!!")
+    end
+  rescue NoMethodError
+    event.respond("That's Not A Command!™")
   end
 end
 
-bot.message(startwith: prefix) do |event|
-  cmd = event.message.content
+bot.message(start_with: prefix) do |event|
+  puts "caught command"
+  cmd = event.message.content.downcase.strip
   cmd[0] = ""
   cmd = cmd.split(" ")
   top = cmd[0]
   cmd.delete_at(0)
+  puts top
   command(top, event, cmd)
 end
-bot.run
+
+Thread.new {while gets=="stop" do bot.stop end}
+
+  #-----------------------------
+  #          COMMANDS
+  #-----------------------------
+
+  def rubber(event)
+    event.respond("woot")
+  end
+
+  def ispaulgreat(event)
+    event.respond("yea " + event.author.mention)
+  end
+
+
+  #-----------------------------
+  #       END OF COMMANDS
+  #-----------------------------
+
+  bot.run
