@@ -1,7 +1,7 @@
 require 'discordrb'
 #tba
 prefix = '['
-bot = Discordrb::Bot.new token: File.open("creds.txt","r+").read.strip, client_id: 355508728344084511
+bot = Discordrb::Bot.new token: File.open("creds.txt","r+").read.strip, client_id: 407055083239505922
 puts bot.invite_url
 def command(command,event,args)
   begin
