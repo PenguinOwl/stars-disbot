@@ -26,6 +26,9 @@ bot.message(start_with: prefix) do |event|
   command(top, event, cmd)
 end
 
+bot.ready do |event|
+end
+
 Thread.new {while gets=="stop" do bot.stop end}
 
   #-----------------------------
