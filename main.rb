@@ -3,6 +3,7 @@ require 'discordrb'
 prefix = '['
 bot = Discordrb::Bot.new token: File.open("creds.txt","r+").read.strip, client_id: 407055083239505922
 puts bot.invite_url
+puts ARGV[0]
 def command(command,event,args)
   begin
     begin
@@ -48,4 +49,21 @@ Thread.new {while gets=="stop" do bot.stop end}
   #       END OF COMMANDS
   #-----------------------------
 
-  bot.run
+  bot.run :async
+
+# http_server.rb
+require 'socket'
+server = TCPServer.new(ARGV[0].to_i)
+puts p server
+
+while session = server.accept
+  request = session.gets
+  puts request
+
+  session.print "HTTP/1.1 200\r\n" # 1
+  session.print "Content-Type: text/html\r\n" # 2
+  session.print "\r\n" # 3
+  session.print "Hello world! The time is #{Time.now}" #4
+
+  session.close
+end
