@@ -29,6 +29,11 @@ $bot.message(start_with: prefix) do |event|
   command(top, event, cmd)
 end
 
+$bot.message(contains: "clut") do |event|
+  event.respond "pls no u garbage"
+  event.message.delete
+end
+
 $bot.ready do |event|
 end
 
