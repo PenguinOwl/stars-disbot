@@ -1,8 +1,8 @@
 require 'discordrb'
 #tba
 prefix = '['
-puts "key", ENV['key']
-bot = Discordrb::Bot.new token: ENV['key'], client_id: 407055083239505922
+puts "key", ENV['KEY']
+bot = Discordrb::Bot.new token: ENV['KEY'], client_id: 407055083239505922
 puts bot.invite_url
 puts ARGV[0]
 def command(command,event,args)
