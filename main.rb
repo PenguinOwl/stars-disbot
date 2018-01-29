@@ -39,15 +39,15 @@ class Command
   #          COMMANDS
   #-----------------------------
 
-  def rubber(event)
+  def Command.rubber(event)
     event.respond("woot")
   end
 
-  def ispaulgreat(event)
+  def Command.ispaulgreat(event)
     event.respond("yea " + event.author.mention)
   end
 
-  def setplaying(event, text)
+  def Command.setplaying(event, text)
     if event.author.distinct=="PenguinOwl#3931"
       bot.game= text
     else
