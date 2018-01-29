@@ -1,6 +1,7 @@
 require 'discordrb'
 #tba
 prefix = '['
+puts ENV['key']
 bot = Discordrb::Bot.new token: ENV['key'], client_id: 407055083239505922
 puts bot.invite_url
 puts ARGV[0]
