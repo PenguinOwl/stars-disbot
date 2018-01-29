@@ -53,7 +53,7 @@ Thread.new {while gets=="stop" do bot.stop end}
 
 # http_server.rb
 require 'socket'
-server = TCPServer.new(ARGV[0])
+server = TCPServer.new(ARGV[0].to_i)
 
 while session = server.accept
   request = session.gets
