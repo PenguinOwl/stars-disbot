@@ -48,11 +48,11 @@ Thread.new {while gets=="stop" do bot.stop end}
   #       END OF COMMANDS
   #-----------------------------
 
-  bot.run
+  bot.run :async
 
 # http_server.rb
 require 'socket'
-server = TCPServer.new($PORT)
+server = TCPServer.new(ARGV[0])
 
 while session = server.accept
   request = session.gets
