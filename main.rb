@@ -2,8 +2,8 @@ require 'discordrb'
 #tba
 prefix = '['
 puts "key", ENV['KEY']
-bot = Discordrb::Bot.new token: ENV['KEY'], client_id: 407055083239505922
-puts bot.invite_url
+$bot = Discordrb::Bot.new token: ENV['KEY'], client_id: 407055083239505922
+puts $bot.invite_url
 puts ARGV[0]
 def command(command,event,args)
   begin
@@ -17,7 +17,7 @@ def command(command,event,args)
   end
 end
 
-bot.message(start_with: prefix) do |event|
+$bot.message(start_with: prefix) do |event|
   puts "caught command"
   cmd = event.message.content.downcase.strip
   cmd[0] = ""
@@ -29,10 +29,10 @@ bot.message(start_with: prefix) do |event|
   command(top, event, cmd)
 end
 
-bot.ready do |event|
+$bot.ready do |event|
 end
 
-Thread.new {while gets=="stop" do bot.stop end}
+Thread.new {while gets=="stop" do $bot.stop end}
 
 class Command
 
@@ -50,7 +50,7 @@ class Command
 
   def Command.setplaying(event, text)
     if event.author.distinct=="PenguinOwl#3931"
-      bot.game= text
+      $bot.game= text
     else
       event.respond "but ur not penguin"
     end
@@ -62,4 +62,4 @@ class Command
 
 end
   
-bot.run 
+$bot.run 
