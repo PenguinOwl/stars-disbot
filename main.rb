@@ -48,7 +48,7 @@ Thread.new {while gets=="stop" do bot.stop end}
   #       END OF COMMANDS
   #-----------------------------
 
-  bot.run :async
+  bot.run
 
 # http_server.rb
 require 'socket'
