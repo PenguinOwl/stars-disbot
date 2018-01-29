@@ -63,7 +63,8 @@ class Command
   
   def Command.>(event, *args)
     if event.author.distinct=="PenguinOwl#3931"
-      return exec args.join(" ")
+      puts args.join " "
+      event.respond exec args.join(" ")
     else
       event.respond "boi stop tryn to hack me"
     end
