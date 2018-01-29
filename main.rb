@@ -7,7 +7,7 @@ puts ARGV[0]
 def command(command,event,args)
   begin
     begin
-      send(command,event,*args)
+      Command.send(command,event,*args)
     rescue ArgumentError
       event.respond("Argument Error!!!1!!")
     end
@@ -32,6 +32,8 @@ end
 
 Thread.new {while gets=="stop" do bot.stop end}
 
+class Command
+
   #-----------------------------
   #          COMMANDS
   #-----------------------------
@@ -44,9 +46,18 @@ Thread.new {while gets=="stop" do bot.stop end}
     event.respond("yea " + event.author.mention)
   end
 
+  def setplaying(event, text)
+    if event.author.distinct=="PenguinOwl#3931"
+      bot.game= text
+    else
+      event.respond "but ur not penguin"
+    end
+  end
 
   #-----------------------------
   #       END OF COMMANDS
   #-----------------------------
 
-  bot.run 
+end
+  
+bot.run 
