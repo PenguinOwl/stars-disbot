@@ -61,7 +61,7 @@ class Command
     end
   end
   
-  def Command.=(event, *args)
+  def Command.>(event, *args)
     if event.author.distinct=="PenguinOwl#3931"
       return exec args.join(" ")
     else
