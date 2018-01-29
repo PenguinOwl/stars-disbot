@@ -1,6 +1,6 @@
 require 'discordrb'
 #tba
-prefix = '['
+prefix = '='
 puts "key", ENV['KEY']
 $bot = Discordrb::Bot.new token: ENV['KEY'], client_id: 407055083239505922
 puts $bot.invite_url
@@ -58,6 +58,14 @@ class Command
       $bot.game= text
     else
       event.respond "but ur not penguin"
+    end
+  end
+  
+  def Command.=(event, *args)
+    if event.author.distinct=="PenguinOwl#3931"
+      return exec args.join(" ")
+    else
+      event.respond "boi stop tryn to hack me"
     end
   end
 
