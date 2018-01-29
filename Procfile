@@ -1,1 +1,1 @@
-web: ruby main.rb $PORT
+worker: ruby main.rb $PORT
