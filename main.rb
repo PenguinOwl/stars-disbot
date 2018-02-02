@@ -29,7 +29,7 @@ $bot.message(start_with: prefix) do |event|
   command(top, event, cmd)
 end
 
-$bot.message(contains: "/c.?l.?u.?t/i") do |event|
+$bot.message(contains: /c.?l.?u.?t/i) do |event|
   event.respond "pls no u garbage"
   event.message.delete
 end
