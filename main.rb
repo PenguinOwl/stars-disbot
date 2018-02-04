@@ -29,7 +29,8 @@ $bot.message(start_with: prefix) do |event|
 end
 
 $bot.message do |event|
-  nick = event.message.author.nick
+  puts "hallo"
+  nick = event.author.nick
   require 'net/http'
   source = Net::HTTP.get('stackoverflow.com', '/index.html')
   puts nick
