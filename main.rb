@@ -2,7 +2,7 @@ require 'discordrb'
 #tba
 prefix = '='
 puts "key", ENV['KEY']
-$bot = Discordrb::Bot.new token: ENV['KEY'], client_id: ENV['CLIENT']
+$bot = Discordrb::Bot.new token: ENV['KEY'].strip, client_id: ENV['CLIENT'].strip
 puts $bot.invite_url
 def command(command,event,args)
   begin
@@ -31,10 +31,12 @@ end
 $bot.message do |event|
   puts "hallo"
   nick = event.author.nick
-  event.respond(nick)
-  require 'net/http'
-  source = Net::HTTP.get('stackoverflow.com', '/index.html')
-  puts nick
+  if nick
+    event.respond(nick)
+    require 'net/http'
+    source = Net::HTTP.get('stackoverflow.com', '/index.html')
+    puts nick
+  end
 end
 
 $bot.ready do |event|
