@@ -45,10 +45,10 @@ $bot.message do |event|
     end
     star = case nlvl
       when 0..99; "⭐"
-      when 100..199; "Iron"
-      when 200..299; "Gold"
-      when 300..399; "Diamond"
-      when 400..999; "Emerald"
+      when 100..199; "🌟"
+      when 200..299; "✨"
+      when 300..399; "💫"
+      when 400..999; "☄️"
     end
     roles = {}
     event.server.roles.each do |role|
@@ -63,7 +63,7 @@ $bot.message do |event|
       end
       author.add_role(pres)
     end
-    event.author.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+" "+"⭐"+" ]"))
+    event.author.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+" "+star+" ]"))
   end
 end
 
