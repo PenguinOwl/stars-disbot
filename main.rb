@@ -34,9 +34,9 @@ $bot.message do |event|
   if nick
     event.respond(nick)
     require 'net/http'
-    source = Net::HTTP.get("plancke.io", "/hypixel/player/stats/#{nick.match(/[a-z]\w+/i)[0]}")
+    source = Net::HTTP.get URI("https://plancke.io/hypixel/player/stats/#{nick.match(/[a-z]\w+/i)[0]}")
     puts source.size
-    puts "plancke.io" + "/hypixel/player/stats/#{nick.match(/[a-z]\w+/i)[0]}"
+    puts "https://plancke.io/hypixel/player/stats/#{nick.match(/[a-z]\w+/i)[0]}"
     lvl = source.match(/Current Level:<\/b> (\d+)/)
     puts lvl
     event.author.nick=(nick.gsub(/\[\d+⭐?\]/,"["+lvl[1]+"⭐]"))
