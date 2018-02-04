@@ -42,13 +42,17 @@ $bot.message do |event|
       when 200..299: "Gold"
       when 300..399: "Diamond"
       when 400..999: "Emerald"
+    else "unknown"
     end
     star = case nlvl
       when 0..99: "⭐"
-      when 100..199: "Iron"
+      when 100..199 "Iron"
       when 200..299: "Gold"
       when 300..399: "Diamond"
       when 400..999: "Emerald"
+    else "unknown"
+    else
+      
     end
     pres = event.server.role(pres)
     unless event.author.role?(pres)
