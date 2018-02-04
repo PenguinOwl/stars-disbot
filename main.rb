@@ -45,14 +45,6 @@ class Command
   #          COMMANDS
   #-----------------------------
 
-  def Command.rubber(event)
-    event.respond("woot")
-  end
-
-  def Command.ispaulgreat(event)
-    event.respond("yea " + event.author.mention)
-  end
-
   def Command.setplaying(event, text)
     if event.author.distinct=="PenguinOwl#3931"
       $bot.game= text
