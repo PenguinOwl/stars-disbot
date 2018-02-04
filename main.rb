@@ -49,8 +49,11 @@ $bot.message do |event|
       when 200..299; "Gold"
       when 300..399; "Diamond"
       when 400..999; "Emerald"
-    else
-      
+    end
+    roles = {}
+    event.server.roles.each do |role|
+      name = role.name
+      roles[name] = role
     end
     pres = event.server.role(pres)
     unless event.author.role?(pres)
