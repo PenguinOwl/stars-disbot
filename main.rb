@@ -59,7 +59,7 @@ $bot.message do |event|
     unless event.author.role?(pres)
       author = event.author
       ["Coal","Iron","Gold","Diamond","Emerald"].each do |naem|
-        author.remove_role(roles[neam]))
+        author.remove_role(roles[neam])
       end
       author.add_role(pres)
     end
