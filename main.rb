@@ -38,7 +38,7 @@ $bot.message do |event|
     puts "https://plancke.io/hypixel/player/stats/#{nick.match(/[a-z]\w+/i)[0]}"
     lvl = source.match(/Current Level:<\/b> (\d+)/)
     puts lvl
-    event.author.set_nick(nick.gsub(/\[\d+⭐?\]/,"["+lvl[1]+"⭐]"))
+    event.author.nick=(nick.gsub(/\[\d+⭐?\]/,"["+lvl[1]+"⭐]"))
     puts nick
   end
 end
