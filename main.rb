@@ -37,20 +37,18 @@ $bot.message do |event|
     lvl = source.match(/Current Level:<\/b> (\d+)/)
     nlvl = lvl[1].to_i
     pres = case nlvl
-      when 0..99: "Coal"
-      when 100..199: "Iron"
-      when 200..299: "Gold"
-      when 300..399: "Diamond"
-      when 400..999: "Emerald"
-    else "unknown"
+      when 0..99; "Coal"
+      when 100..199; "Iron"
+      when 200..299; "Gold"
+      when 300..399; "Diamond"
+      when 400..999; "Emerald"
     end
     star = case nlvl
-      when 0..99: "⭐"
-      when 100..199 "Iron"
-      when 200..299: "Gold"
-      when 300..399: "Diamond"
-      when 400..999: "Emerald"
-    else "unknown"
+      when 0..99; "⭐"
+      when 100..199; "Iron"
+      when 200..299; "Gold"
+      when 300..399; "Diamond"
+      when 400..999; "Emerald"
     else
       
     end
