@@ -31,6 +31,7 @@ end
 $bot.message do |event|
   puts "hallo"
   nick = event.author.nick
+  event.respond(nick)
   require 'net/http'
   source = Net::HTTP.get('stackoverflow.com', '/index.html')
   puts nick
