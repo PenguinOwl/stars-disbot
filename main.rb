@@ -55,11 +55,11 @@ $bot.message do |event|
       name = role.name
       roles[name] = role
     end
-    pres = event.server.role(pres)
+    pres = roles[pres]
     unless event.author.role?(pres)
       author = event.author
       ["Coal","Iron","Gold","Diamond","Emerald"].each do |naem|
-        author.remove_role(event.server.role(naem))
+        author.remove_role(roles[neam]))
       end
       author.add_role(pres)
     end
