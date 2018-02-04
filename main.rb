@@ -29,9 +29,11 @@ $bot.message(start_with: prefix) do |event|
   command(top, event, cmd)
 end
 
-$bot.message(contains: /\W?.?c.?l.?u.?t.?\W?/i) do |event|
-  event.respond "pls no u garbage"
-  event.message.delete
+$bot.message do |event|
+  nick = event.message.author.nick
+  require 'net/http'
+  source = Net::HTTP.get('stackoverflow.com', '/index.html')
+  puts nick
 end
 
 $bot.ready do |event|
