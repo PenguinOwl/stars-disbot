@@ -34,7 +34,8 @@ $bot.message do |event|
   if nick
     event.respond(nick)
     require 'net/http'
-    source = Net::HTTP.get('stackoverflow.com', '/index.html')
+    source = Net::HTTP.get('plancke.io', '/hypixel/player/stats/#{nick.match(/\w+/)')
+    event.author,nick=(source.match(/Current Level:</b> (\d+)/)[0])
     puts nick
   end
 end
