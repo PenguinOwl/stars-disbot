@@ -2,9 +2,8 @@ require 'discordrb'
 #tba
 prefix = '='
 puts "key", ENV['KEY']
-$bot = Discordrb::Bot.new token: ENV['KEY'], client_id: 407055083239505922
+$bot = Discordrb::Bot.new token: ENV['KEY'], client_id: ENV['CLIENT']
 puts $bot.invite_url
-puts ARGV[0]
 def command(command,event,args)
   begin
     begin
