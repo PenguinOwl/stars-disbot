@@ -35,14 +35,35 @@ $bot.message do |event|
     source = Net::HTTP.get URI("https://plancke.io/hypixel/player/stats/#{nick.match(/\w+$/i)[0]}")
     puts "https://plancke.io/hypixel/player/stats/#{nick.match(/\w+$/i)[0]}"
     lvl = source.match(/Current Level:<\/b> (\d+)/)
-    event.author.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+" ⭐ ]"))
+    nlvl = lvl[1].to_i
+    pres = case nlvl
+      when 0..99: "Coal"
+      when 100..199: "Iron"
+      when 200..299: "Gold"
+      when 300..399: "Diamond"
+      when 400..999: "Emerald"
+    end
+    star = case nlvl
+      when 0..99: "⭐"
+      when 100..199: "Iron"
+      when 200..299: "Gold"
+      when 300..399: "Diamond"
+      when 400..999: "Emerald"
+    end
+    pres = event.server.role(pres)
+    unless event.author.role?(pres)
+      author = event.author
+      ["Coal","Iron","Gold","Diamond","Emerald"].each do |naem|
+        author.remove_role(event.server.role(naem))
+      end
+      author.add_role(pres)
+    end
+    event.author.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+" "+"⭐"+" ]"))
   end
 end
 
 $bot.ready do |event|
 end
-
-Thread.new {while gets=="stop" do $bot.stop end}
 
 class Command
 
