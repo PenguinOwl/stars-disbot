@@ -63,7 +63,7 @@ $bot.message do |event|
       end
       author.add_role(pres)
     end
-    event.author.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+" "+star+" ]"))
+    event.author.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+star+"]"))
   end
 end
 
