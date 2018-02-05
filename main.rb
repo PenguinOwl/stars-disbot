@@ -28,8 +28,8 @@ $bot.message(start_with: prefix) do |event|
   command(top, event, cmd)
 end
 
-$bot.typing do |event|
-  nick = event.member.nick
+def setnick(member,server)
+  nick = member.nick
   if nick
     require 'net/http'
     source = Net::HTTP.get URI("https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1]}")
@@ -51,20 +51,24 @@ $bot.typing do |event|
       when 400..999; "☄️"
     end
     roles = {}
-    event.channel.server.roles.each do |role|
+    server.roles.each do |role|
       name = role.name
       roles[name] = role
     end
     pres = roles[pres]
-    unless event.member.role?(pres)
-      author = event.member
+    unless member.role?(pres)
+      author = member
       ["Coal","Iron","Gold","Diamond","Emerald"].each do |rname|
         author.remove_role(roles[rname])
       end
       author.add_role(pres)
     end
-    event.member.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+" "+star+"]"))
+    member.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+" "+star+"]"))
   end
+end
+
+$bot.typing do |event|
+  setnick(event.member,event.channel.server)
 end
 
 $bot.ready do |event|
@@ -81,6 +85,12 @@ class Command
       $bot.game= text
     else
       event.respond "but ur not penguin"
+    end
+  end
+  
+  def Command.updateall(event)
+    event.channel.server.members.each do |mem|
+      setnick(mem,event.channel.server)
     end
   end
   
