@@ -95,6 +95,7 @@ class Command
   def Command.update(event, *args)
     event.channel.server.resolve_members.each do |mem|
       if args.contains? mem.distinct
+        event.respond "updating " + mem.distinct
         setnick(mem.on(event.channel.server),event.channel.server)
       end 
     end
