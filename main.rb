@@ -37,7 +37,7 @@ def setnick(member,server)
     source = Net::HTTP.get URI("https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1]}")
     puts "https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1]}"
     lvl = source.match(/Current Level:<\/b> (\d+)/)
-    nlvl = lvl[1].to_i
+    nlvl = lvl[1].to_i+1
     pres = case nlvl
       when 0..99; "Coal"
       when 100..199; "Iron"
@@ -69,7 +69,7 @@ def setnick(member,server)
     if nlvl.to_i < 10
       d = "0"
     end
-    member.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+d+lvl[1]+" "+star+"]"))
+    member.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+d+nlvl.to_s+" "+star+"]"))
   end
 end
 
