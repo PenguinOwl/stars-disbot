@@ -88,9 +88,9 @@ class Command
     end
   end
   
-  def Command.updateall(event)
-    event.channel.server.members.each do |mem|
-      setnick(mem,event.channel.server)
+  def Command.update(event, *args)
+    event.message.montions.each do |mem|
+      setnick(mem.on(event.channel.server),event.channel.server)
     end
   end
   
