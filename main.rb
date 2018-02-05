@@ -63,7 +63,11 @@ def setnick(member,server)
       end
       author.add_role(pres)
     end
-    member.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+" "+star+"]"))
+    d = ""
+    if nlvl.to_i < 10
+      d = "0"
+    end
+    member.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+d+lvl[1]+" "+star+"]"))
   end
 end
 
@@ -89,7 +93,7 @@ class Command
   end
   
   def Command.update(event, *args)
-    event.message.montions.each do |mem|
+    event.message.mentions.each do |mem|
       setnick(mem.on(event.channel.server),event.channel.server)
     end
   end
