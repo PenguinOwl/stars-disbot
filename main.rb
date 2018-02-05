@@ -93,6 +93,11 @@ class Command
   end
   
   def Command.update(event, *args)
+    event.channel.server.resolve_members.each do |mem|
+      if args.contains? mem.distinct
+        setnick(mem.on(event.channel.server),event.channel.server)
+      end 
+    end
     event.message.mentions.each do |mem|
       event.respond "updating " + mem.mention
       setnick(mem.on(event.channel.server),event.channel.server)
