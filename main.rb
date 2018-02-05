@@ -28,8 +28,8 @@ $bot.message(start_with: prefix) do |event|
   command(top, event, cmd)
 end
 
-$bot.message do |event|
-  nick = event.author.nick
+$bot.typing do |event|
+  nick = event.member.nick
   if nick
     require 'net/http'
     source = Net::HTTP.get URI("https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1]}")
@@ -51,19 +51,19 @@ $bot.message do |event|
       when 400..999; "☄️"
     end
     roles = {}
-    event.server.roles.each do |role|
+    event.channel.server.roles.each do |role|
       name = role.name
       roles[name] = role
     end
     pres = roles[pres]
-    unless event.author.role?(pres)
-      author = event.author
+    unless event.member.role?(pres)
+      author = event.member
       ["Coal","Iron","Gold","Diamond","Emerald"].each do |rname|
         author.remove_role(roles[rname])
       end
       author.add_role(pres)
     end
-    event.author.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+star+"]"))
+    event.member.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+lvl[1]+star+"]"))
   end
 end
 
