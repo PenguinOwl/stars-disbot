@@ -32,8 +32,8 @@ $bot.message do |event|
   nick = event.author.nick
   if nick
     require 'net/http'
-    source = Net::HTTP.get URI("https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1][0]}")
-    puts "https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1][0]}"
+    source = Net::HTTP.get URI("https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1]}")
+    puts "https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1]}"
     lvl = source.match(/Current Level:<\/b> (\d+)/)
     nlvl = lvl[1].to_i
     pres = case nlvl
