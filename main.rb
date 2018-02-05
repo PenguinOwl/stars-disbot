@@ -9,7 +9,9 @@ def command(command,event,args)
     begin
       Command.send(command,event,*args)
     rescue ArgumentError
-      event.respond("Argument error!")
+      unless ["update"].include? command
+        event.respond("Argument error!")
+      end
     end
   rescue NoMethodError
     event.respond("That's not a command!")
