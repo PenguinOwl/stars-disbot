@@ -95,8 +95,8 @@ class Command
   end
   
   def Command.update(event, *args)
-    puts event.channel.server.resolve_members.size
-    event.channel.server.resolve_members.each do |mem|
+    puts API::Server.resolve_members(ENV['KEY'],event.channel.server.id).size
+    API::Server.resolve_members(ENV['KEY'],event.channel.server.id).each do |mem|
       if args.include? mem.distinct
         event.respond "updating " + mem.distinct
         setnick(mem.on(event.channel.server),event.channel.server)
