@@ -36,8 +36,8 @@ def setnick(member,server)
     require 'net/http'
     source = Net::HTTP.get URI("https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1]}")
     puts "https://plancke.io/hypixel/player/stats/#{nick.scan(/\w+/i)[1]}"
-    lvl = source.match(/Current Level:<\/b> (\d+)/)
-    nlvl = lvl[1].to_i
+    lvl = source.match(/Current Level:<\/b> ([\d\.]+)/)
+    nlvl = lvl[1].round.to_i
     pres = case nlvl
       when 0..99; "Coal"
       when 100..199; "Iron"
