@@ -36,7 +36,7 @@ def setnick(member,server)
     require 'net/http'
     source = Net::HTTP.get URI("https://mcuuid.net/?q=#{nick.scan(/\w+/i)[1]}")
     source = Net::HTTP.get URI("https://api.hypixel.net/player?key=#{ENV['HYPIXEL_KEY']}&uuid=#{source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1]}")
-    lvl = source.match(/\"bedwars_level\":([\d\.]+)/)
+    lvl = source.match(/"bedwars_level":([\d\.]+)/)
     nlvl = lvl[1].round.to_i
     pres = case nlvl
       when 0..99; "Coal"
