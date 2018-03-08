@@ -1,1 +1,1 @@
-worker: ruby main.rb $PORT
+worker: bundler update; ruby main.rb $PORT
