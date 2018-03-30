@@ -108,6 +108,19 @@ class Command
     end
   end
   
+  def Command.total(event)
+    total = 0
+    event.channel.server.members.each do |mem|
+      if mem.nick
+        if mem.nick.scan(/\w+/i)
+          str = mem.nick.match(/\[(\d+)\s?\]\s.+/i)[1].to_i
+          total += str
+        end
+      end
+    end
+    event.respond total.to_s + " total stars."
+  end
+  
   def Command.>(event, *args)
     if event.author.distinct=="PenguinOwl#3931"
       puts args.join " "
