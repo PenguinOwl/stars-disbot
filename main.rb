@@ -115,7 +115,8 @@ class Command
       if mem.nick
         str = mem.nick.match(/\[(\d+)\s?\]\s.+/i)[1]
         if str[1]
-        total = str[1].to_i + total
+          total = str[1].to_i + total
+        end
       end
     end
     event.respond total.to_s + " total stars."
