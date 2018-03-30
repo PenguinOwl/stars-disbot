@@ -110,11 +110,12 @@ class Command
   
   def Command.total(event)
     total = 0
+    event.respond ":::"
     event.channel.server.members.each do |mem|
       if mem.nick
         if mem.nick.scan(/\w+/i)
           str = mem.nick.match(/\[(\d+)\s?\]\s.+/i)[1].to_i
-          total += str
+          total = str + total
         end
       end
     end
