@@ -113,10 +113,9 @@ class Command
     event.respond ":::"
     event.channel.server.members.each do |mem|
       if mem.nick
-        if mem.nick.scan(/\w+/i)
-          str = mem.nick.match(/\[(\d+)\s?\]\s.+/i)[1].to_i
-          total = str + total
-        end
+        str = mem.nick.match(/\[(\d+)\s?\]\s.+/i)[1]
+        if str[1]
+        total = str[1].to_i + total
       end
     end
     event.respond total.to_s + " total stars."
