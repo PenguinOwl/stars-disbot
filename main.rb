@@ -112,9 +112,13 @@ class Command
     total = 0
     event.respond ":::"
     event.channel.server.members.each do |mem|
+      event.respond "::"
       if mem.nick
+        event.respond ":a:"
         str = mem.nick.match(/\[(\d+)\s?\]\s.+/i)
+        event.respond "b::"
         if str[0]
+          event.respond ":b:"
           total = str[0].to_i + total
         end
       end
