@@ -115,11 +115,9 @@ class Command
       event.respond "::"
       if mem.nick
         event.respond ":a:"
-        str = mem.nick.scan(/\[(\d+)\s?.?\]\s.+/i)
-        event.respond "b::"
-        if str[0]
-          event.respond ":b:"
-          total = str[0].to_i + total
+        str = mem.nick.match(/\[(\d+)\s?.?\]\s.+/i)
+        if str[1]
+          total = str[1].to_i + total
         end
       end
     end
