@@ -115,7 +115,7 @@ class Command
       event.respond "::"
       if mem.nick
         event.respond ":a:"
-        str = mem.nick.scan(/\[(\d+)\s?\]\s.+/i)
+        str = mem.nick.scan(/\[(\d+)\s?.?\]\s.+/i)
         event.respond "b::"
         if str[0]
           event.respond ":b:"
