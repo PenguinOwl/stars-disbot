@@ -26,7 +26,7 @@ $bot.message(start_with: prefix) do |event|
   cmd[0] = ""
   cmd = cmd.split(" ")
   top = cmd[0]
-  cmd.map! {|e| e.gsub("_"," ")}
+  cmd.map! {|e| e.gsub("$$s"," ")}
   cmd.delete_at(0)
   puts top
   command(top, event, cmd)
