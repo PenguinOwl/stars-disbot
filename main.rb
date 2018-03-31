@@ -2,7 +2,7 @@ require 'discordrb'
 require 'hypixel-ruby'
 #tba
 prefix = '='
-$api = API.new(ENV['KEY'])
+$api = HypixelAPI.new(ENV['KEY'])
 puts "key", ENV['KEY']
 $bot = Discordrb::Bot.new token: ENV['KEY'].strip, client_id: ENV['CLIENT'].strip
 puts $bot.invite_url
