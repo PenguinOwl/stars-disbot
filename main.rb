@@ -1,5 +1,6 @@
 require 'discordrb'
 require 'hypixel-ruby'
+require 'hashie'
 #tba
 prefix = '='
 $api = HypixelAPI.new(ENV['HYPIXEL_KEY'])
