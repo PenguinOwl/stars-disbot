@@ -41,6 +41,7 @@ def setnick(member,server)
     member.dm uuid
     source = $api.player(:uuid => uuid)
     member.dm source.keys.to_s
+    source.extend Hashie::Extensions::DeepFind
     lvl = source.deep_find(:bedwars_level)
     memeber.dm lvl
     nlvl = lvl.to_i
