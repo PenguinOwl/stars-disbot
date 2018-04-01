@@ -68,9 +68,10 @@ def setnick(member,server)
     pres = roles[pres]
     unless member.role?(pres)
       author = member
-      ["Coal","Iron","Gold","Diamond","Emerald","Prismarine","Ruby"].each do |rname|
-        author.remove_role(roles[rname])
-      end
+      unless member.roles == [] or member.roles == nil
+        ["Coal","Iron","Gold","Diamond","Emerald","Prismarine","Ruby"].each do |rname|
+          author.remove_role(roles[rname])
+        end
       author.add_role(pres)
     end
     d = ""
