@@ -43,7 +43,7 @@ def setnick(member,server)
     source = $api.player(:uuid => uuid)
     member.dm source.respond_to? :deep_find
     lvl = source.deep_find(:bedwars_level)
-    memeber.dm lvl
+    memeber.dm "hend"
     nlvl = lvl.to_i
     pres = case nlvl
       when 0..99; "Coal"
