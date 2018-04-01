@@ -58,7 +58,7 @@ def setnick(member,server)
       when 200..299; "✨"
       when 300..399; "💫"
       when 400..499; "☄️"
-      when 500..599; "☀"
+      when 500..599; "✫"
       when 600..999; "⚡"
     end
     roles = {}
