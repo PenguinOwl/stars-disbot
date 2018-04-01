@@ -40,8 +40,8 @@ def setnick(member,server)
     source = Net::HTTP.get URI("https://mcuuid.net/?q=#{nick.scan(/\w+/i)[1]}")
     uuid = source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1]
     source = $api.player(:uuid => uuid)
-    lvl = source.deep_find(:Experience)
-    nlvl = lvl.to_i / 5000
+    lvl = source.deep_find(:bedwars_level)
+    nlvl = lvl.to_i - (source.deep_find(:Experience_new)/2500)
     pres = case nlvl
       when 0..99; "Coal"
       when 100..199; "Iron"
