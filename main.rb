@@ -39,12 +39,8 @@ def setnick(member,server)
     require 'net/http'
     source = Net::HTTP.get URI("https://mcuuid.net/?q=#{nick.scan(/\w+/i)[1]}")
     uuid = source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1]
-    member.dm uuid
     source = $api.player(:uuid => uuid)
-    member.dm source.respond_to? :deep_find
-    member.dm(source.deep_find(:bedwars_level))
     lvl = source.deep_find(:bedwars_level)
-    memeber.dm "hend"
     nlvl = lvl.to_i
     pres = case nlvl
       when 0..99; "Coal"
