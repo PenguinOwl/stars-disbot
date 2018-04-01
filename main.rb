@@ -41,7 +41,7 @@ def setnick(member,server)
     uuid = source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1]
     member.dm uuid
     source = $api.player(:uuid => uuid)
-    member.dm p(source)
+    member.dm source.respond_to? :deep_find
     lvl = source.deep_find(:bedwars_level)
     memeber.dm lvl
     nlvl = lvl.to_i
