@@ -72,6 +72,7 @@ def setnick(member,server)
         ["Coal","Iron","Gold","Diamond","Emerald","Prismarine","Ruby"].each do |rname|
           author.remove_role(roles[rname])
         end
+      end
       author.add_role(pres)
     end
     d = ""
