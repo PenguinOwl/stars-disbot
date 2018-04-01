@@ -40,6 +40,7 @@ def setnick(member,server)
     source = Net::HTTP.get URI("https://mcuuid.net/?q=#{nick.scan(/\w+/i)[1]}")
     uuid = source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1]
     source = $api.player(:uuid => uuid)
+    puts $api.url("player", :uuid => uuid)
     lvl = source.deep_find(:bedwars_level)
     nlvl = lvl.to_i
     pres = case nlvl
