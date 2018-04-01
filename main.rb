@@ -48,7 +48,7 @@ def setnick(member,server)
       when 200..299; "Gold"
       when 300..399; "Diamond"
       when 400..499; "Emerald"
-      when 500..599; "Prismarine"
+      when 500..599; "Sapphire"
       when 600..999; "Ruby"
     end
     star = case nlvl
@@ -69,7 +69,7 @@ def setnick(member,server)
     unless member.role?(pres)
       author = member
       unless member.roles == [] or member.roles == nil
-        ["Coal","Iron","Gold","Diamond","Emerald","Prismarine","Ruby"].each do |rname|
+        ["Coal","Iron","Gold","Diamond","Emerald","Sapphire","Ruby"].each do |rname|
           author.remove_role(roles[rname])
         end
       end
