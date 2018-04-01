@@ -116,7 +116,7 @@ class Command
     event.channel.server.members.each do |mem|
       if mem.nick
         str = mem.nick.match(/\[(\d+)\s?.?\]\s.+/i)
-        if str[1]
+        if str
           total = str[1].to_i + total
         end
       end
