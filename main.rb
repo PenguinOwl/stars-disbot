@@ -42,6 +42,7 @@ def setnick(member,server)
     member.dm uuid
     source = $api.player(:uuid => uuid)
     member.dm source.respond_to? :deep_find
+    member.dm(source.deep_find(:bedwars_level))
     lvl = source.deep_find(:bedwars_level)
     memeber.dm "hend"
     nlvl = lvl.to_i
