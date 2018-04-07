@@ -121,7 +121,7 @@ class Command
     event.message.mentions.each do |mem|
       event.respond "updating " + mem.mention
       begin
-        mem.nick = setnick(mem.on(event.channel.server), event.channel.server)
+        mem.nick = setnick(mem, event.channel.server)
       rescue Discordrb::Errors::NoPermission
         puts mem.distinct + " is unable to be updated."
       end
