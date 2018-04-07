@@ -86,7 +86,7 @@ def setnick(member,server)
 end
 
 $bot.typing do |event|
-  setnick(event.member,event.channel.server)
+  event.member.nick = setnick(event.member,event.channel.server)
 end
 
 $bot.ready do |event|
@@ -109,7 +109,7 @@ class Command
   def Command.update(event, *args)
     event.message.mentions.each do |mem|
       event.respond "updating " + mem.mention
-      setnick(mem.on(event.channel.server),event.channel.server)
+      mem.nick=setnick(mem.on(event.channel.server),event.channel.server)
     end
   end
   
@@ -124,6 +124,10 @@ class Command
       end
     end
     event.respond total.to_s + " total stars."
+  end
+  
+  def Command.%(event, *args)
+    event.respond setnick(args.join(" "),event.channel.server)
   end
   
   def Command.>(event, *args)
