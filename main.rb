@@ -8,16 +8,20 @@ puts "key", ENV['KEY']
 $bot = Discordrb::Bot.new token: ENV['KEY'].strip, client_id: ENV['CLIENT'].strip
 puts $bot.invite_url
 def command(command,event,args)
-  begin
+  if ENV['DEBUG'] == "false"
     begin
-      Command.send(command,event,*args)
-    rescue ArgumentError
-      unless ["update"].include? command
-        event.respond("Argument error!")
+      begin
+        Command.send(command,event,*args)
+      rescue ArgumentError
+        unless ["update"].include? command
+          event.respond("Argument error!")
+        end
       end
+    rescue NoMethodError
+      event.respond("That's not a command!")
     end
-  rescue NoMethodError
-    event.respond("That's not a command!")
+  else
+    Command.send(command,event,*args)
   end
 end
 
