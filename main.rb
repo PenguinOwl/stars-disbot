@@ -80,7 +80,7 @@ def setnick(member,server)
     if nlvl.to_i < 10
       d = "0"
     end
-    res = nick.gsub(/\[\d+.?.?.?\]/,"["+d+nlvl.to_s+" "+star+"]")
+    res = nick.gsub(/\[\d+.?.?.?\]/,"["+d+nlvl.to_s+star+"]")
   end
   res
 end
