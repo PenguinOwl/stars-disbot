@@ -119,6 +119,7 @@ class Command
   
   def Command.update(event, *args)
     event.message.mentions.each do |mem|
+      mem = mem.on(event.channel.server)
       event.respond "updating " + mem.mention
       begin
         mem.nick = setnick(mem, event.channel.server)
