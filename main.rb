@@ -43,7 +43,9 @@ def setnick(member,server)
   if nick
     require 'net/http'
     source = Net::HTTP.get URI("https://mcuuid.net/?q=#{nick.scan(/\w+/i)[1]}")
-    uuid = source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1]
+    uuid = source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1] rescue NoMethodError do
+      puts member.distinct + " has invalid username."
+    end
     source = $api.player(:uuid => uuid)
     lvl = source.deep_find(:bedwars_level).to_i - 1
     nlvl = lvl
@@ -90,7 +92,10 @@ def setnick(member,server)
 end
 
 $bot.typing do |event|
-  event.member.nick = setnick(event.member,event.channel.server)
+  begin
+    event.member.nick = setnick(event.member,event.channel.server)
+  rescue Discordrb::Errors::NoPermission
+  end
 end
 
 $bot.ready do |event|
@@ -113,7 +118,11 @@ class Command
   def Command.update(event, *args)
     event.message.mentions.each do |mem|
       event.respond "updating " + mem.mention
-      mem.nick = setnick(mem.on(event.channel.server), event.channel.server)
+      begin
+        mem.nick = setnick(mem.on(event.channel.server), event.channel.server)
+      rescue Discordrb::Errors::NoPermission
+        puts mem.distinct + " is unable to be updated."
+      end
     end
   end
   
