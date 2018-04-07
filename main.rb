@@ -34,14 +34,15 @@ $bot.message(start_with: prefix) do |event|
 end
 
 def setnick(member,server)
-  nick = member.nick
+  nick = member
+  nick = member.nick if member.class != String
   if nick
     require 'net/http'
     source = Net::HTTP.get URI("https://mcuuid.net/?q=#{nick.scan(/\w+/i)[1]}")
     uuid = source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1]
     source = $api.player(:uuid => uuid)
     lvl = source.deep_find(:bedwars_level).to_i - 1
-    nlvl = lvl + ((source.deep_find(:Experience).to_i % 5000)/2500)
+    nlvl = lvl
     pres = case nlvl
       when 0..99; "Coal"
       when 100..199; "Iron"
@@ -66,7 +67,7 @@ def setnick(member,server)
       roles[name] = role
     end
     pres = roles[pres]
-    unless member.role?(pres)
+    unless member.class == String or member.role?(pres)
       author = member
       unless member.roles == [] or member.roles == nil
         ["Coal","Iron","Gold","Diamond","Emerald","Sapphire","Ruby"].each do |rname|
@@ -79,8 +80,9 @@ def setnick(member,server)
     if nlvl.to_i < 10
       d = "0"
     end
-    member.nick=(nick.gsub(/\[\d+.?.?.?\]/,"["+d+nlvl.to_s+" "+star+"]"))
+    res = nick.gsub(/\[\d+.?.?.?\]/,"["+d+nlvl.to_s+" "+star+"]")
   end
+  res
 end
 
 $bot.typing do |event|
