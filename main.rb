@@ -75,7 +75,7 @@ def setnick(member,server)
       roles[name] = role
     end
     pres = roles[pres]
-    unless member.class == String or member.role?(pres)
+    if member.respond_to(:role?) and !member.role?(pres)
       author = member
       unless member.roles == [] or member.roles == nil
         ["Coal","Iron","Gold","Diamond","Emerald","Sapphire","Ruby"].each do |rname|
