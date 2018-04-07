@@ -45,7 +45,7 @@ def setnick(member,server)
     source = Net::HTTP.get URI("https://mcuuid.net/?q=#{nick.scan(/\w+/i)[1]}")
     begin
       uuid = source.match(/https:\/\/crafatar.com\/avatars\/(\w+)/)[1] 
-    rescue NoMethodError do
+    rescue NoMethodError
       puts member.distinct + " has invalid username."
     end
     source = $api.player(:uuid => uuid)
